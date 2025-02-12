@@ -19,8 +19,8 @@ jobs:
         run: |
           sudo bash build.sh
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}
+          name: ${{ github.event.repository.name }}-${{ matrix.runs-on }}
           path: |
             Roobi.img
