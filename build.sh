@@ -7,7 +7,7 @@ echo "Starting script..."
 
 OUTPUT_FILE=Roobi.img
 function create_env() {
-  echo "deb http://cz.archive.ubuntu.com/ubuntu lunar main universe" | tee -a /etc/apt/sources.list
+#  echo "deb http://cz.archive.ubuntu.com/ubuntu lunar main universe" | tee -a /etc/apt/sources.list
 
   apt update
   apt install pacman-package-manager -y
