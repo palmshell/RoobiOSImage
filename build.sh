@@ -75,7 +75,7 @@ mount $EFI /mnt/boot
 # ------------------------ install base ----------------------------
 
 # base
-pacstrap -K /mnt base base-devel linux linux-firmware vulkan-intel intel-ucode sudo grub efibootmgr networkmanager openssh
+pacstrap -K /mnt base linux linux-firmware vulkan-intel intel-ucode sudo grub efibootmgr networkmanager openssh
 genfstab -U /mnt >> /mnt/etc/fstab
 sed -i "s/^.*swap.*$//g" /mnt/etc/fstab
 sed -i "s/^.*ext4.*$//g" /mnt/etc/fstab
@@ -133,7 +133,7 @@ echo "Createboot ..."
 arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Clean up..."
-arch-chroot /mnt pacman -Rs --noconfirm base-devel git meson
+#arch-chroot /mnt pacman -Rs --noconfirm base-devel git meson
 #rm -rf /mnt/home/ps/xorg-server-git/ /mnt/home/ps/xorgproto-git/
 arch-chroot /mnt bash -c 'yes | pacman -Rns $(pacman -Qtdq)'
 rm /mnt/var/cache/pacman/pkg/*
