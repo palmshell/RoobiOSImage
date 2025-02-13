@@ -31,8 +31,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-while true; do xrandr > /dev/null; sleep 1; done
-
 if [ `tty` == '/dev/tty1' ]; then
+  picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0
 	exec electron /usr/Roobi/main.js
 fi

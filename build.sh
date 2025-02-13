@@ -117,16 +117,16 @@ arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot --bootlo
 echo "enable systemctl..."
 arch-chroot /mnt systemctl enable systemd-timesyncd NetworkManager growroot
 
-chmod -R  777 /mnt/home/ps/xorgproto-git/
-arch-chroot /mnt bash -c 'cd /home/ps/xorgproto-git && su ps -c "yes | makepkg -si" '
+#chmod -R  777 /mnt/home/ps/xorgproto-git/
+#arch-chroot /mnt bash -c 'cd /home/ps/xorgproto-git && su ps -c "yes | makepkg -si" '
+#
+#chmod -R  777 /mnt/home/ps/xorg-server-git/
+#arch-chroot /mnt bash -c 'cd /home/ps/xorg-server-git && su ps -c "yes | makepkg --nocheck -si" '
 
-chmod -R  777 /mnt/home/ps/xorg-server-git/
-arch-chroot /mnt bash -c 'cd /home/ps/xorg-server-git && su ps -c "yes | makepkg --nocheck -si" '
-
-arch-chroot /mnt pacman -Sy --noconfirm  electron xorg-xset xorg-xinit intel-gpu-tools adobe-source-han-sans-cn-fonts noto-fonts adobe-source-han-sans-kr-fonts parted pigz usbutils vim nano lsof iperf3 stress bc net-tools alsa-utils bluez bluez-utils btrfs-progs gptfdisk ntfs-3g rsync bash-completion wget bind-tools hdparm smartmontools hdparm sysstat lvm2 mdadm tcpdump unzip timeshift gzip xz dmidecode python python-evdev python-pyserial libgpiod nginx libpulse
+arch-chroot /mnt pacman -Sy --noconfirm xorg-server picom electron xorg-xset xorg-xinit intel-gpu-tools adobe-source-han-sans-cn-fonts noto-fonts adobe-source-han-sans-kr-fonts parted pigz usbutils vim nano lsof iperf3 stress bc net-tools alsa-utils bluez bluez-utils btrfs-progs gptfdisk ntfs-3g rsync bash-completion wget bind-tools hdparm smartmontools hdparm sysstat lvm2 mdadm tcpdump unzip timeshift gzip xz dmidecode python python-evdev python-pyserial libgpiod nginx libpulse
 
 arch-chroot /mnt mkinitcpio -P
-dd if=/dev/zero of=/mnt/empty.img bs=1M count=150
+dd if=/dev/zero of=/mnt/empty.img bs=1M count=300
 
 echo "Createboot ..."
 
@@ -134,7 +134,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "Clean up..."
 arch-chroot /mnt pacman -Rs --noconfirm base-devel git meson
-rm -rf /mnt/home/ps/xorg-server-git/ /mnt/home/ps/xorgproto-git/
+#rm -rf /mnt/home/ps/xorg-server-git/ /mnt/home/ps/xorgproto-git/
 arch-chroot /mnt bash -c 'yes | pacman -Rns $(pacman -Qtdq)'
 rm /mnt/var/cache/pacman/pkg/*
 rm /mnt/var/lib/pacman/sync/*.db
