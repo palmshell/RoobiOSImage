@@ -135,7 +135,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 echo "Clean up..."
 #arch-chroot /mnt pacman -Rs --noconfirm base-devel git meson
 #rm -rf /mnt/home/ps/xorg-server-git/ /mnt/home/ps/xorgproto-git/
-arch-chroot /mnt bash -c 'yes | pacman -Rns $(pacman -Qtdq)'
+#arch-chroot /mnt bash -c 'yes | pacman -Rns $(pacman -Qtdq)'
 rm /mnt/var/cache/pacman/pkg/*
 rm /mnt/var/lib/pacman/sync/*.db
 
